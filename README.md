@@ -1,4 +1,4 @@
-# PSoC 6 MCU Code Examples with ModusToolbox<sup>tm</sup> IDE
+# PSoC 6 MCU Code Examples with ModusToolbox<sup>TM</sup> IDE
 This repository is a "Table of Contents" for the many ModusToolbox IDE code examples that are coming, and for resources available to you as a PSoC 6 MCU developer. As code examples appear, this document will link to them. Until then, use this to locate PSoC 6 MCU resources. 
 
 # Table of Contents 
