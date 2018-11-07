@@ -1,4 +1,4 @@
-# MCUExamples for PSoC 6 SDK and ModusToolbox<sup>TM</sup> IDE
+# MCU Examples for PSoC 6 SDK and ModusToolbox<sup>TM</sup> IDE
 
 
 # Table of Contents 
@@ -16,9 +16,9 @@ These examples demonstrate the peripherals and basic functionality of the PSoC 6
 
 ## Creating the Code Example
 
-Download the example and unzip the repository onto your local machine. You can also clone the repository into a location on your local machine.
+Download and unzip this repository onto your local machine. You can also clone the repository into a location on your local machine.
 
-In the ModusToolbox IDE, use **File > New > ModusToolbox IDE Application**. Pick your kit or device. You must use a supported kit or device as noted in the Requirements section above.
+In the ModusToolbox IDE, use **File > New > ModusToolbox IDE Application**. Pick your kit or device. You must use a supported kit or device. Supported kits are in the list of code examples below, and in the readme.txt file.
 
 In the **Starter Application** window, click the **Browse** button and navigate to the _modus.mk_ file for the example. Click **Next** and complete the application creation process.
 Then import all the projects in the archive or root directory. 
@@ -27,7 +27,6 @@ Then import all the projects in the archive or root directory.
 | Code Example | Supported Kits | Notes |
 | ----- | ----- | ----- |
 | Come back soon | TBD | Notes here |
-
 
 
 # ModusToolbox IDE
