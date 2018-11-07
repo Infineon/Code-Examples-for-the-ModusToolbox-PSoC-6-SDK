@@ -1,72 +1,34 @@
-# WICED-SDK-with-PSoC-6-Support-Examples using ModusToolbox<sup>TM</sup> IDE
-This repository is a "Table of Contents" for the many ModusToolbox IDE code examples that are coming, and for resources available to you as a ModusToolbox developer. As code examples appear, this document will link to them. Until then, use this to locate PSoC 6 MCU and SDK resources. 
+# MCUExamples for PSoC 6 SDK and ModusToolbox<sup>TM</sup> IDE
+
 
 # Table of Contents 
 
-* [Importing a Code Example](#importing-a-code-example)
-* [Code Examples](#code-examples)
-  * [Getting Started Examples](#getting-started-examples): basic examples that introduce the platform
-  * [Analog Examples](#analog-examples): focus on analog peripherals like ADC, DAC, and comparators
-  * [Digital Examples](#digital-examples): focus on a non-analog peripheral, such as UART, I2C, RTC, DMA, Interrupts, and so forth
-  * [BLE Examples](#ble-examples): demonstrate Bluetooth Low Energy connectivity
-  * [RTOS Examples](#rtos-examples): demonstrate how to integrate an RTOS
-  * [System Examples](#system-examples): more complex examples that demonstrate a solution, such as a bootloader
+* [Overview](#overview)
+* [Creating the Code Example](#creating-the-code-example)
+* [MCU Code Examples](#mcu-code-examples)
 * [ModusToolbox IDE](#modustoolbox-ide)
 * [Kits](#kits) 
 * [Technical Resources](#technical-resources)
 
-# Importing a Code Example
+## Overview
 
-We assume you're familiar with GitHub. You may need a little help understanding how to get the example into the IDE.
+These examples demonstrate the peripherals and basic functionality of the PSoC 6 MCU. Each example has a readme.txt, and a comprehensive PDF document that explains what to do and what to observe when running the example.
 
-When you go to the repository, you can download or clone the repository. The IDE import process starts the same either way.
+## Creating the Code Example
 
-Use **File** > **Import** > **General** > **Existing projects into workspace**.
+Download the example and unzip the repository onto your local machine. You can also clone the repository into a location on your local machine.
 
-*If you downloaded a zip*: enable the **Select Archive File** option and browse to locate the archive (zip file)
+In the ModusToolbox IDE, use **File > New > ModusToolbox IDE Application**. Pick your kit or device. You must use a supported kit or device as noted in the Requirements section above.
 
-*If you cloned*: enable the **Select root directory** option and browse to locate the directory where you cloned the example.
+In the **Starter Application** window, click the **Browse** button and navigate to the _modus.mk_ file for the example. Click **Next** and complete the application creation process.
+Then import all the projects in the archive or root directory. 
 
-Then import all the projects in the archive or root directory. Most code examples have a PDF document that explains the code example. You will find that PDF file in the code example folder. Or you can read it right here on GitHub.
-
-# Code Examples 
-
-Cypress provides a rich set of code examples for the PSoC 6 MCU, using the ModusToolbox IDE. PSoC 6 MCU bridges the gap between expensive, power hungry application processors and low‑performance microcontrollers (MCUs). The ultra‑low‑power, dual-core architecture of PSoC 6 MCU offers the processing performance needed by IoT devices, eliminating the tradeoffs between power and performance.
-
-Code examples are grouped by category. The same code example may appear in more than one category. All the code examples come with well documented design guidelines to help you understand the design and how to develop it. Feel free to explore the code example source files and let's innovate together! 
-
-This ReadMe also includes information about ModusToolbox software, links to avaliable kits, and programming resources for PSoC 6 MCU.
-
-## Getting Started Examples
-
+# MCU Code Examples 
 | Code Example | Supported Kits | Notes |
 | ----- | ----- | ----- |
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
+| Come back soon | TBD | Notes here |
 
-## Analog Examples
-| Code Example | Supported Kits | Notes |
-| ----- | ----- | -----
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
 
-## Digital Examples 
-| Code Example | Supported Kits | Notes |
-| ----- | ----- | ----- |
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
-
-## BLE Examples
-| Code Example | Supported Kits | Notes |
-| ----- | ----- | -----
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
-
-## RTOS Examples
-| Code Example | Supported Kits | Notes |
-| ----- | ----- | -----
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
-
-## System Examples
-| Code Example | Supported Kits | Notes |
-| ----- | ----- | -----
-| TBD | PSoC 6 BLE Kit, PSoC 6 WiFi-BT Kit | Notes Here |
 
 # ModusToolbox IDE
 ![](/images/MTbanner.png)
