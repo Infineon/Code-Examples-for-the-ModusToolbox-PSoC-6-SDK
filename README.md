@@ -45,6 +45,8 @@ ModusToolbox™ IDE is based on the industry standard Eclipse IDE, and provides 
 
 * [ModusToolbox](http://www.cypress.com/products/modustoolbox-integrated-design-environment-ide)
 
+Join the discussion at the [ModusToolbox Forum](https://community.cypress.com/community/modustoolbox/overview) on the Cypress Developer Community.
+
 # Kits
 Cypress provides low-cost development kits for the PSoC 6 MCU platform.
 
@@ -71,6 +73,6 @@ The TRM provides detailed descriptions of the internal architecture of PSoC 6 de
 
 ### Cypress Developer Community ##
 
-Need support for your design and development questions? Check out the [PSoC 6 forum](https://community.cypress.com/community/psoc-6) on the [Cypress Developer Community 3.0](https://community.cypress.com/welcome). Interact with technical experts in the embedded design community and receive answers verified by Cypress' very best applications engineers. You'll also have access to robust technical documentation, active conversation threads, and rich multimedia content.
+Need support for your design and development questions? Check out the [ModusToolbox Forum](https://community.cypress.com/community/modustoolbox/overview), or the [PSoC 6 forum](https://community.cypress.com/community/psoc-6) on the [Cypress Developer Community 3.0](https://community.cypress.com/welcome). Interact with technical experts in the embedded design community and receive answers verified by Cypress' very best applications engineers. You'll also have access to robust technical documentation, active conversation threads, and rich multimedia content.
 
 [Community Forums](https://community.cypress.com/welcome) | [Videos](http://www.cypress.com/video-library) | [Blogs](http://www.cypress.com/blog) | [Training](http://www.cypress.com/training)
