@@ -18,7 +18,7 @@ The code examples in this repository all use [ModusToolbox™ IDE](http://www.cy
 
 The specific supported kits and parts vary per example. Review the readme.txt or the PDF file for each example. Most examples support all [PSoC 6<sup>®</sup> MCU](http://www.cypress.com/PSoC6) parts
 
-Supported kits include [PSoC 6 BLE Pioneer Kit](http://www.cypress.com/go/cy8ckit-062-ble), [PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/documentation/development-kitsboards/psoc-6-wifi-bt-pioneer-kit), and [PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w).
+Supported kits include [PSoC 6 BLE Pioneer Kit](http://www.cypress.com/cy8ckit-062-ble), [PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/CY8CKIT-062-WiFi-BT), and [PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w).
 
 You can browse the code examples in the repository, or use GitHub's search capabilities to find a particular symbol or term. Just type the term into the search box and search in this repository.
 
@@ -50,11 +50,12 @@ Join the discussion at the [ModusToolbox Forum](https://community.cypress.com/co
 # Kits
 Cypress provides low-cost development kits for the PSoC 6 MCU platform.
 
-[PSoC 6 BLE Pioneer Kit](http://www.cypress.com/documentation/development-kitsboards/psoc-6-ble-pioneer-kit): The PSoC 6 BLE Pioneer Kit  enables design and debug of the PSoC 63 Line. The kit includes an E-Ink display, and Cypress' industry-leading CapSense® technology.
+[PSoC 6 BLE Pioneer Kit](http://www.cypress.com/cy8ckit-062-ble): The PSoC 6 BLE Pioneer Kit  enables design and debug of the PSoC 63 Line. The kit includes an E-Ink display, and Cypress' industry-leading CapSense® technology.
 
-[PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/documentation/development-kitsboards/psoc-6-wifi-bt-pioneer-kit): The PSoC 6 WiFi-BT Pioneer Kit enables design and debug of the PSoC 62 MCU and the Murata LBEE5KL1DX Module (CYW4343W WiFi + Bluetooth Combo Chip). It includes a TFT display and Cypress' industry-leading CapSense technology.
+[PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/CY8CKIT-062-WiFi-BT): The PSoC 6 WiFi-BT Pioneer Kit enables design and debug of the PSoC 62 MCU and the Murata LBEE5KL1DX Module (CYW4343W WiFi + Bluetooth Combo Chip). It includes a TFT display and Cypress' industry-leading CapSense technology.
 
 [PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w) enables design and debug of PSoC 6 MCUs. It comes with industry-leading CapSense technology for touch buttons and slider, on-board debugger/programmer with KitProg3, μSD card interface, 512-Mb Quad-SPI NOR flash, PDM-PCM microphone, and a thermistor. It also includes a Murata LBEE5KL1DX module, based on the CYW4343W combo device.
+
 
 # Technical Resources
 
