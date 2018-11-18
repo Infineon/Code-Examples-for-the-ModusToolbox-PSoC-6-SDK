@@ -1,6 +1,6 @@
-# Code Examples for the ModusToolbox<sup>TM</sup> PSoC 6 SDK
+# Code Examples for the ModusToolbox™ PSoC<sup>®</sup> 6 SDK
 
-This file is a placeholder for the upcoming release of code examples for ModusToolbox IDE.
+This file is a placeholder for the upcoming release of code examples for ModusToolbox™ IDE.
 
 # Table of Contents 
 
@@ -12,11 +12,11 @@ This file is a placeholder for the upcoming release of code examples for ModusTo
 * [Technical Resources](#technical-resources)
 ## Overview
 
-These examples demonstrate the peripherals and basic functionality of the PSoC 6 MCU. Some examples demonstrate more complex solutions. Each example has a readme.txt, and a comprehensive PDF document that explains what to do and what to observe when running the example.
+These examples demonstrate the peripherals and basic functionality of the PSoC<sup>®</sup> 6 MCU. Some examples demonstrate more complex solutions. Each example has a readme.txt, and a comprehensive PDF document that explains what to do and what to observe when running the example.
 
-The code examples in this repository all use [ModusToolbox™ IDE](http://www.cypress.com/products/modustoolbox-integrated-design-environment-ide) and the C language.
+The code examples in this repository all use [ModusToolbox IDE](http://www.cypress.com/products/modustoolbox-integrated-design-environment-ide) and the C language.
 
-The specific supported kits and parts vary per example. Review the readme.txt or the PDF file for each example. Most examples support all [PSoC 6<sup>®</sup> MCU](http://www.cypress.com/PSoC6) parts
+The specific supported kits and parts vary per example. Review the readme.txt or the PDF file for each example. Most examples support all [PSoC 6 MCU](http://www.cypress.com/PSoC6) parts
 
 Supported kits include [PSoC 6 BLE Pioneer Kit](http://www.cypress.com/cy8ckit-062-ble), [PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/CY8CKIT-062-WiFi-BT), and [PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w).
 
@@ -41,7 +41,7 @@ In the **Starter Application** window, click the **Browse** button and navigate 
 # ModusToolbox IDE
 ![](/images/MTbanner.png)
 
-ModusToolbox™ IDE is based on the industry standard Eclipse IDE, and provides a single, coherent, and familiar design experience for the lowest power, most flexible MCUs with best-in-class sensing.
+ModusToolbox IDE is based on the industry standard Eclipse IDE, and provides a single, coherent, and familiar design experience for the lowest power, most flexible MCUs with best-in-class sensing.
 
 * [ModusToolbox](http://www.cypress.com/products/modustoolbox-integrated-design-environment-ide)
 
@@ -54,7 +54,7 @@ Cypress provides low-cost development kits for the PSoC 6 MCU platform.
 
 [PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/CY8CKIT-062-WiFi-BT): The PSoC 6 WiFi-BT Pioneer Kit enables design and debug of the PSoC 62 MCU and the Murata LBEE5KL1DX Module (CYW4343W WiFi + Bluetooth Combo Chip). It includes a TFT display and Cypress' industry-leading CapSense technology.
 
-[PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w) enables design and debug of PSoC 6 MCUs. It comes with industry-leading CapSense technology for touch buttons and slider, on-board debugger/programmer with KitProg3, μSD card interface, 512-Mb Quad-SPI NOR flash, PDM-PCM microphone, and a thermistor. It also includes a Murata LBEE5KL1DX module, based on the CYW4343W combo device.
+[PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w) enables design and debug of PSoC 6 MCUs. It comes with industry-leading CapSense technology for touch buttons and slider, on-board debugger/programmer with KitProg3, μSD card interface, 512-Mb Quad-SPI NOR flash, PDM microphone, and a thermistor. It also includes a Murata LBEE5KL1DX module, based on the CYW4343W combo device.
 
 
 # Technical Resources
