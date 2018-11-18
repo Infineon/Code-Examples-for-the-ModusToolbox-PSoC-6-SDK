@@ -1,4 +1,4 @@
-# Code Examples for the ModusToolbox™ PSoC<sup>®</sup> 6 SDK
+# Code Examples for the ModusToolbox™ PSoC 6 SDK
 
 This file is a placeholder for the upcoming release of code examples for ModusToolbox™ IDE.
 
