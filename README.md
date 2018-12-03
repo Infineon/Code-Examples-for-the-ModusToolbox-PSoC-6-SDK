@@ -19,7 +19,7 @@ The code examples in this repository all use [ModusToolbox IDE](http://www.cypre
 
 The specific supported kits and parts vary per example. Review the readme.txt or the PDF file for each example. Supported kits may include [PSoC 6 BLE Pioneer Kit](http://www.cypress.com/cy8ckit-062-ble), [PSoC 6 WiFi-BT Pioneer Kit](http://www.cypress.com/CY8CKIT-062-WiFi-BT), and [PSoC 6 Wi-Fi BT Prototyping Kit](http://www.cypress.com/cy8cproto-062-4343w). Most examples support all [PSoC 6 MCU](http://www.cypress.com/PSoC6) parts.
 
-You can browse the code examples in the repository, or use GitHub's search capabilities to find a particular symbol or term. Just type the term into the search box and search in this repository.
+You can browse the code examples in the repository, or use GitHub's search capabilities to find a particular symbol or term. Just type the term into the search box at the top of this page and search in this repository.
 
 ![](/images/SearchGitHub.png)
 
