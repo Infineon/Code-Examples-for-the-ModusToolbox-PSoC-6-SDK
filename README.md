@@ -35,21 +35,17 @@ In the **Starter Application** window, click the **Browse** button and navigate 
 | ----- | ----- |
 |CE221773_PSoC6_HelloWorld | Demonstrates UART communication and blinks an LED using a TCPWM resource|
 |CE219521_PSoC_6_MCU_GPIO_Interrupt| Demonstrates how to configure a GPIO to generate an interrupt.|
-|CE220263_PSoC6_GPIO| Demonstrates GPIO pin operation, on the PSoC® 6 MCU|
-|CE219881_PowerModes |This example demonstrates how to transition PSoC® 6 MCU among these power modes – Low Power Active, Low Power Sleep, Ultra-Low Power Active, Ultra-Low Power Sleep, and Deep Sleep|
 |CE218472_LPComp_CompareVrefExt| Demonstrates the voltage comparison functionality using the LPComp resource.|
 |CE218129_LPComp_WakeupFromHibernate| Demonstrates wakeup from the Hibernate mode using the LPComp resource.|
 |CE220060_WatchdogTimer| Demonstrates the two use cases of WDT – as a watchdog that causes a device reset in the case of a malfunction, and as a periodic interrupt source.|
 |CE220498_PSoC6_MCWDT| Demonstrates the Multi-Counter Watchdog Timer (MCWDT) in free-running mode. The MCWDT measures the time between two successive switch press events and the result is displayed on the UART terminal.|
 |CE218136_EINK_CapSense_RTOS | Shows how to create a user-interface solution using an E-INK display, CapSense®, and FreeRTOS |
 |CE212736_PSoC6_BLE_FindMe| Introduces BLE software development and implements the BLE Find me profile|
-|CE218552_DMA_UART_Mem| Demonstrates a UART-to-memory buffer data transfer using DMA, with no CPU usage.|
 |CE220291_PSoC6_TCPWM_Square_Wave| Generates a square wave using the TCPWM configured as a PWM. An LED connected to the PWM output pin blinks at 2 Hz.|
 |CE213903_PSoC6DfuBasic| Four applications demonstrate device firmware update. This includes downloading an application from a host, installing it in device flash, and transferring control to that application.|
 |CE219490_Ramping_LED_Using_SmartIO| Uses a PWM and Smart I/O to implement a ramping LED. There is no CPU usage except for the initialization of PWM and Smart I/O.|
 |CE220465_CryptoAESDemo| Encrypts and decrypts user input data using the AES algorithm, using a 128-bit long key. The encrypted and decrypted data are displayed on a UART terminal emulator.|
 |CE219656_PSoC6_UARTLowLevelAPIs| Three applications demonstrate the UART transmit and receive operation using low-level polling, DMA, or an interrupt.|
-|CE220541_PSoC6_MCU_SCB_EZI2C| Implements an I2C slave using a Serial Communication Block resource configured as EZI2C, which receives the data required to control an LED from an I2C master.|
 |CE220818_PSoC6_I2CMaster| Demonstrates the basic operation of the I2C master resource, which sends a command packet to the I2C slave SCB to control an user LED. Three applications developed in this example are: I2C master using high-level APIs, I2C master using low-level APIs and I2C master communication with EzI2C slave.|
 |CE221119_PSoC6_MCU_SCB_I2C_Slave| Two applications demonstrate the I2C slave mode, using either polling or a callback routine.|
 |CE221120_PSoC6_SPIMaster| Four applications demonstrate SPI communication between master and slave, using high-level API, low-level API, polling, and an interrupt.|
