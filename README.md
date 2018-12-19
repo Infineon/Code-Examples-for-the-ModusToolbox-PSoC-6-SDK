@@ -35,6 +35,7 @@ In the **Starter Application** window, click the **Browse** button and navigate 
 | ----- | ----- |
 |CE221773_PSoC6_HelloWorld | Demonstrates UART communication and blinks an LED using a TCPWM resource|
 |CE219521_PSoC_6_MCU_GPIO_Interrupt| Demonstrates how to configure a GPIO to generate an interrupt.|
+|CE216795_PSoC6DualCPU |Demonstrates two CPU cores doing independent tasks and communicating via shared memory and the IPC block |
 |CE218472_LPComp_CompareVrefExt| Demonstrates the voltage comparison functionality using the LPComp resource.|
 |CE218129_LPComp_WakeupFromHibernate| Demonstrates wakeup from the Hibernate mode using the LPComp resource.|
 |CE220060_WatchdogTimer| Demonstrates the two use cases of WDT – as a watchdog that causes a device reset in the case of a malfunction, and as a periodic interrupt source.|
