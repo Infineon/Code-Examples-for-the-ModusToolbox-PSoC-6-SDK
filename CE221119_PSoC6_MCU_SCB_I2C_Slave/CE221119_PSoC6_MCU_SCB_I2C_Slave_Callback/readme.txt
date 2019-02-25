@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+CE221119_PSoC6_MCU_SCB_I2C_Callback
+-------------------------------------------------------------------------------
+
+Requirements
+------------
+Tool: ModusToolbox™ IDE
+Programming Language: C
+Associated Parts: All PSoC 6 MCU parts
+
+Supported Kits
+--------------
+PSoC 6 BLE Pioneer Kit
+PSoC 6 WiFi-BT Pioneer Kit
+PSoC 6 WiFi-BT Prototyping Kit
+
+Overview
+--------
+This example demonstrates the operation of the PSoC 6 MCU Serial Control Block (SCB)
+in I2C Slave mode. The SCB in I2C Slave mode accepts command packets to control the 
+brightness of the LED. The I2C Slave updates its read buffer with a status packet 
+in response to the accepted command. This example implements the I2C Slave using 
+callback method.
+
+Build and Program
+-----------------
+First, select the <application name>_mainapp folder in the project explorer. 
+In the Quick Panel click the <application name> Program (KitProg3) link.
+The IDE builds the application, programs the kit, and starts execution.
+
+Code Example Document
+---------------------
+The PDF file for this example is in the example folder. It has full details
+on the design, how to use the code example, and what to look for when it runs.
+
+-------------------------------------------------------------------------------

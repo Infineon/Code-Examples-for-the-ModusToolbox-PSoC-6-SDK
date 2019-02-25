@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Design xmlns="http://cypress.com/xsd/cydesignfile_v1" version="10">
+  <ToolInfo version="1.0.0"/>
+  <Device mpn="CY8C624ABZI-D44"/>
+  <Platform name="PSOC6_DUAL_CORE"/>
+  <Kits>
+    <Kit name="CY8CPROTO-062-4343W" version="1.0"/>
+  </Kits>
+  <Libraries>
+    <Library name="psoc6sw" version="1.1"/>
+  </Libraries>
+  <ConfiguratorData/>
+  <BlockConfig>
+    <Clocks>
+      <Block location="peri[0].div_16[0]" alias="Clk_PWM" template="mxs40peripheralclock" version="1.0">
+        <Param id="intDivider" value="7200"/>
+        <Param id="fracDivider" value="0"/>
+        <Param id="startOnReset" value="true"/>
+      </Block>
+      <Block location="peri[0].div_24_5[0]" alias="Clk_SmartIO" template="mxs40peripheralclock" version="1.0">
+        <Param id="intDivider" value="727000"/>
+        <Param id="fracDivider" value="0"/>
+        <Param id="startOnReset" value="true"/>
+      </Block>
+    </Clocks>
+    <Peripherals>
+      <Block location="tcpwm[1].cnt[0]" alias="PWM" template="mxs40pwm" version="1.0">
+        <Param id="PwmMode" value="CY_TCPWM_PWM_MODE_PWM"/>
+        <Param id="ClockPrescaler" value="CY_TCPWM_PWM_PRESCALER_DIVBY_1"/>
+        <Param id="PwmAlignment" value="CY_TCPWM_PWM_LEFT_ALIGN"/>
+        <Param id="RunMode" value="CY_TCPWM_PWM_CONTINUOUS"/>
+        <Param id="DeadClocks" value="0"/>
+        <Param id="EnablePeriodSwap" value="false"/>
+        <Param id="Period0" value="399"/>
+        <Param id="Period1" value="32768"/>
+        <Param id="EnableCompareSwap" value="false"/>
+        <Param id="Compare0" value="200"/>
+        <Param id="Compare1" value="16384"/>
+        <Param id="InterruptSource" value="CY_TCPWM_INT_NONE"/>
+        <Param id="CountInput" value="CY_TCPWM_INPUT_DISABLED"/>
+        <Param id="KillInput" value="CY_TCPWM_INPUT_DISABLED"/>
+        <Param id="ReloadInput" value="CY_TCPWM_INPUT_DISABLED"/>
+        <Param id="StartInput" value="CY_TCPWM_INPUT_DISABLED"/>
+        <Param id="SwapInput" value="CY_TCPWM_INPUT_DISABLED"/>
+        <Param id="KillMode" value="CY_TCPWM_PWM_STOP_ON_KILL"/>
+        <Param id="InvertPwm" value="false"/>
+        <Param id="InvertPwm_n" value="false"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+    </Peripherals>
+    <Pins>
+      <Block location="ioss[0].port[6].pin[4]" alias="SWO" template="mxs40pin" version="1.0">
+        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
+        <Param id="initialState" value="1"/>
+        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+        <Param id="driveStrength" value="CY_GPIO_DRIVE_FULL"/>
+        <Param id="sioOutputBuffer" value="true"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+      <Block location="ioss[0].port[6].pin[6]" alias="SWDIO" template="mxs40pin" version="1.0">
+        <Param id="DriveModes" value="CY_GPIO_DM_PULLUP"/>
+        <Param id="initialState" value="1"/>
+        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+        <Param id="driveStrength" value="CY_GPIO_DRIVE_FULL"/>
+        <Param id="sioOutputBuffer" value="true"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+      <Block location="ioss[0].port[6].pin[7]" alias="SWCLK" template="mxs40pin" version="1.0">
+        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN"/>
+        <Param id="initialState" value="1"/>
+        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+        <Param id="driveStrength" value="CY_GPIO_DRIVE_FULL"/>
+        <Param id="sioOutputBuffer" value="true"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+      <Block location="ioss[0].port[9].pin[4]" alias="Pin_LED" template="mxs40pin" version="1.0">
+        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
+        <Param id="initialState" value="1"/>
+        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+        <Param id="driveStrength" value="CY_GPIO_DRIVE_FULL"/>
+        <Param id="sioOutputBuffer" value="true"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+      <Block location="ioss[0].port[9].smartio[0]" alias="SmartIO" template="mxs40smartio" version="1.0">
+        <Param id="SmartIOConfigurator" value="0"/>
+        <Param id="clkSrc" value="CY_SMARTIO_CLK_DIVACT"/>
+        <Param id="lutEn0" value="false"/>
+        <Param id="lutEn1" value="false"/>
+        <Param id="lutEn2" value="true"/>
+        <Param id="lutEn3" value="true"/>
+        <Param id="lutEn4" value="true"/>
+        <Param id="lutEn5" value="false"/>
+        <Param id="lutEn6" value="false"/>
+        <Param id="lutEn7" value="false"/>
+        <Param id="duEn" value="false"/>
+        <Param id="hldOvr" value="false"/>
+        <Param id="ioMode0" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode1" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode2" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode3" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode4" value="CY_SMARTIO_OUTPUT"/>
+        <Param id="ioMode5" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode6" value="CY_SMARTIO_BYPASS"/>
+        <Param id="ioMode7" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode0" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode1" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode2" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode3" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode4" value="CY_SMARTIO_ASYNC_INPUT"/>
+        <Param id="chipMode5" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode6" value="CY_SMARTIO_BYPASS"/>
+        <Param id="chipMode7" value="CY_SMARTIO_BYPASS"/>
+        <Param id="lut0Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut0Map" value="0"/>
+        <Param id="lut0Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut0Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut0Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut1Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut1Map" value="0"/>
+        <Param id="lut1Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut1Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut1Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut2Opcode" value="CY_SMARTIO_LUTOPC_GATED_OUT"/>
+        <Param id="lut2Map" value="1"/>
+        <Param id="lut2Tr0" value="CY_SMARTIO_LUTTR_LUT2_OUT"/>
+        <Param id="lut2Tr1" value="CY_SMARTIO_LUTTR_LUT2_OUT"/>
+        <Param id="lut2Tr2" value="CY_SMARTIO_LUTTR_LUT2_OUT"/>
+        <Param id="lut3Opcode" value="CY_SMARTIO_LUTOPC_GATED_OUT"/>
+        <Param id="lut3Map" value="129"/>
+        <Param id="lut3Tr0" value="CY_SMARTIO_LUTTR_LUT2_OUT"/>
+        <Param id="lut3Tr1" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
+        <Param id="lut3Tr2" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
+        <Param id="lut4Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut4Map" value="66"/>
+        <Param id="lut4Tr0" value="CY_SMARTIO_LUTTR_CHIP4"/>
+        <Param id="lut4Tr1" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
+        <Param id="lut4Tr2" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
+        <Param id="lut5Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut5Map" value="0"/>
+        <Param id="lut5Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut5Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut5Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut6Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut6Map" value="0"/>
+        <Param id="lut6Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut6Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut6Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut7Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
+        <Param id="lut7Map" value="0"/>
+        <Param id="lut7Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut7Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="lut7Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
+        <Param id="duOpcode" value="CY_SMARTIO_DUOPC_INCR"/>
+        <Param id="duSize" value="CY_SMARTIO_DUSIZE_8"/>
+        <Param id="duTr0" value="CY_SMARTIO_DUTR_ZERO"/>
+        <Param id="duTr1" value="CY_SMARTIO_DUTR_ZERO"/>
+        <Param id="duTr2" value="CY_SMARTIO_DUTR_ZERO"/>
+        <Param id="duData0" value="CY_SMARTIO_DUDATA_ZERO"/>
+        <Param id="duData1" value="CY_SMARTIO_DUDATA_ZERO"/>
+        <Param id="duDataReg" value="0"/>
+        <Param id="inFlash" value="true"/>
+      </Block>
+    </Pins>
+    <Platform>
+      <Block location="cpuss[0].dap[0]" alias="" template="mxs40dap" version="1.0">
+        <Param id="dbgMode" value="SWD"/>
+        <Param id="traceEnable" value="false"/>
+      </Block>
+      <Block location="srss[0].clock[0]" alias="" template="mxs40sysclocks" version="1.0"/>
+      <Block location="srss[0].clock[0].fastclk[0]" alias="" template="mxs40fastclk" version="1.0">
+        <Param id="divider" value="1"/>
+      </Block>
+      <Block location="srss[0].clock[0].hfclk[0]" alias="" template="mxs40hfclk" version="1.0">
+        <Param id="sourceClockNumber" value="1"/>
+        <Param id="divider" value="1"/>
+      </Block>
+      <Block location="srss[0].clock[0].ilo[0]" alias="" template="mxs40ilo" version="1.0">
+        <Param id="hibernate" value="true"/>
+      </Block>
+      <Block location="srss[0].clock[0].imo[0]" alias="" template="mxs40imo" version="1.0">
+        <Param id="trim" value="1"/>
+      </Block>
+      <Block location="srss[0].clock[0].lfclk[0]" alias="" template="mxs40lfclk" version="1.0">
+        <Param id="sourceClock" value="ilo"/>
+      </Block>
+      <Block location="srss[0].clock[0].pathmux[0]" alias="" template="mxs40pathmux" version="1.0">
+        <Param id="sourceClock" value="imo"/>
+      </Block>
+      <Block location="srss[0].clock[0].pathmux[1]" alias="" template="mxs40pathmux" version="1.0">
+        <Param id="sourceClock" value="imo"/>
+      </Block>
+      <Block location="srss[0].clock[0].pathmux[2]" alias="" template="mxs40pathmux" version="1.0">
+        <Param id="sourceClock" value="imo"/>
+      </Block>
+      <Block location="srss[0].clock[0].pathmux[3]" alias="" template="mxs40pathmux" version="1.0">
+        <Param id="sourceClock" value="imo"/>
+      </Block>
+      <Block location="srss[0].clock[0].pathmux[4]" alias="" template="mxs40pathmux" version="1.0">
+        <Param id="sourceClock" value="imo"/>
+      </Block>
+      <Block location="srss[0].clock[0].periclk[0]" alias="" template="mxs40periclk" version="1.0">
+        <Param id="divider" value="2"/>
+      </Block>
+      <Block location="srss[0].clock[0].pll[0]" alias="" template="mxs40pll" version="1.0">
+        <Param id="lowFrequencyMode" value="false"/>
+        <Param id="configuration" value="auto"/>
+        <Param id="desiredFrequency" value="144.000"/>
+        <Param id="optimization" value="MinPower"/>
+      </Block>
+      <Block location="srss[0].clock[0].slowclk[0]" alias="" template="mxs40slowclk" version="1.0">
+        <Param id="divider" value="1"/>
+      </Block>
+      <Block location="srss[0].power[0]" alias="" template="mxs40power" version="1.0">
+        <Param id="pwrMode" value="LDO_1_1"/>
+        <Param id="pmicEnable" value="false"/>
+        <Param id="backupSrc" value="VDDD"/>
+        <Param id="vddaMv" value="3300"/>
+        <Param id="vdddMv" value="3300"/>
+        <Param id="vBackupMv" value="3300"/>
+        <Param id="vddNsMv" value="3300"/>
+        <Param id="vddio0Mv" value="3300"/>
+        <Param id="vddio1Mv" value="3300"/>
+      </Block>
+    </Platform>
+  </BlockConfig>
+  <Netlist>
+    <Net>
+      <Port name="cpuss[0].dap[0].swj_swclk_tclk[0]"/>
+      <Port name="ioss[0].port[6].pin[7].digital_in[0]"/>
+    </Net>
+    <Net>
+      <Port name="cpuss[0].dap[0].swj_swdio_tms[0]"/>
+      <Port name="ioss[0].port[6].pin[6].digital_inout[0]"/>
+    </Net>
+    <Net>
+      <Port name="cpuss[0].dap[0].swj_swo_tdo[0]"/>
+      <Port name="ioss[0].port[6].pin[4].digital_out[0]"/>
+    </Net>
+    <Net>
+      <Port name="ioss[0].port[9].pin[4].digital_out[0]"/>
+      <Port name="ioss[0].port[9].smartio[0].io_out[4]"/>
+    </Net>
+    <Net>
+      <Port name="ioss[0].port[9].smartio[0].chip_out[4]"/>
+      <Port name="tcpwm[1].cnt[0].line[0]"/>
+    </Net>
+    <Net>
+      <Port name="ioss[0].port[9].smartio[0].clock[0]"/>
+      <Port name="peri[0].div_24_5[0].clk[0]"/>
+    </Net>
+    <Net>
+      <Port name="peri[0].div_16[0].clk[0]"/>
+      <Port name="tcpwm[1].cnt[0].clock[0]"/>
+    </Net>
+  </Netlist>
+</Design>
