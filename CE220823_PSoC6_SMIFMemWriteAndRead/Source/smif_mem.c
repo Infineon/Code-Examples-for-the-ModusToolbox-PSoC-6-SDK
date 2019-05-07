@@ -1,27 +1,28 @@
 /******************************************************************************
 * File Name: smif_mem.c
 *
-* Version: 1.0
+* Version: 2.0
 *
-* Description: This file contains all the functions and variables required for
-* 			   proper operation of QSPI component
+* Description:
+* 	This file contains functions to perform memory operations such as read,
+* 	write, and erase on an external memory device.
 *
 *******************************************************************************
 * Copyright (2018-2019), Cypress Semiconductor Corporation. All rights reserved.
 *******************************************************************************
 * This software, including source code, documentation and related materials
-* (“Software”), is owned by Cypress Semiconductor Corporation or one of its
-* subsidiaries (“Cypress”) and is protected by and subject to worldwide patent
+* ("Software"), is owned by Cypress Semiconductor Corporation or one of its
+* subsidiaries ("Cypress") and is protected by and subject to worldwide patent
 * protection (United States and foreign), United States copyright laws and
-* international treaty provisions. Therefore, you may use this Software only
-* as provided in the license agreement accompanying the software package from
-* which you obtained this Software (“EULA”).
+* international treaty provisions.  Therefore, you may use this Software only as
+* provided in the license agreement accompanying the software package from which
+* you obtained this Software ("EULA").
 *
-* If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
-* non-transferable license to copy, modify, and compile the Software source
-* code solely for use in connection with Cypress’s integrated circuit products.
-* Any reproduction, modification, translation, compilation, or representation
-* of this Software except as specified above is prohibited without the express
+* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+* non-transferable license to copy, modify, and compile the Software source code
+* solely for use in connection with Cypress’s integrated circuit products.  Any
+* reproduction, modification, translation, compilation, or representation of
+* this Software except as specified above is prohibited without the express
 * written permission of Cypress.
 *
 * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
@@ -29,250 +30,281 @@
 * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
 * reserves the right to make changes to the Software without notice. Cypress
 * does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death (“High Risk Product”). By
-* including Cypress’s product in a High Risk Product, the manufacturer of such
-* system or application assumes all risk of such use and in doing so agrees to
-* indemnify Cypress against all liability.
+* Software or any product or circuit described in the Software. Cypress does not
+* authorize its products for use in any products where a malfunction or failure
+* of the Cypress product may reasonably be expected to result in significant
+* property damage, injury or death ("High Risk Product"). By including Cypress's
+* product in a High Risk Product, the manufacturer of such system or application
+* assumes all risk of such use and in doing so agrees to indemnify Cypress
+* against all liability.
 *******************************************************************************/
+
 #include "smif_mem.h"
+#include "cycfg.h"
+#include "cycfg_qspi_memslot.h"
+
 
 /***************************************************************************
 * Global variables
 ***************************************************************************/
+/* All the functions in this module use the timeout parameter of the following
+ * context variable for timing out on memory operations.
+ */
 extern cy_stc_smif_context_t KIT_QSPI_context;
 
-/***************************************************************************
-* Function Prototypes
-***************************************************************************/
-void handle_error(void);
-void PrintArray(char * msg, uint8_t * buff, uint32_t size);
 
 /*******************************************************************************
-* Function Name: handle_error
-********************************************************************************
-*
-* This function processes unrecoverable errors
-*
-*******************************************************************************/
-void handle_error(void)
-{
-     /* Disable all interrupts */
-    __disable_irq();
-    while(1u) {}
-}
-
-/*******************************************************************************
-* Function Name: PrintArray
+* Function Name: PollTransferStatus
 ****************************************************************************//**
 *
-* This function prints the content of the RX buffer to the UART console.
+* Polls the SMIF block until the transfer status equals the expected value or
+* timeout occurs.
 *
-* \param msg - message print before array output
+* \param transferStatus
+* Transfer status value to be checked.
 *
-* \param  rxBuffer - The buffer to the console output.
-*
-* \param  size - The size of the buffer to the console output.
+* \return Status of the operation.
+* CY_SMIF_SUCCESS 	     - SMIF block has completed the transfer
+* CY_SMIF_EXCEED_TIMEOUT - Timeout occurred.
 *
 *******************************************************************************/
-void PrintArray(char * msg, uint8_t * buff, uint32_t size)
+static cy_en_smif_status_t PollTransferStatus(cy_en_smif_txfr_status_t transferStatus)
 {
-    printf("%s", msg);
-    for(uint32_t index=0; index<size; index++)
-    {
-        printf("0x%02X ", (unsigned int) buff[index]);
-    }
-    printf("\r\n=======================\r\n");
+	cy_en_smif_status_t status = CY_SMIF_SUCCESS;
+	uint32_t timeout = SMIF_TRANSFER_TIMEOUT;
+
+	while (((uint32_t)transferStatus != Cy_SMIF_GetTxfrStatus(KIT_QSPI_HW, &KIT_QSPI_context)) && ( timeout > 0u))
+	{
+		Cy_SysLib_DelayUs(CY_SMIF_WAIT_1_UNIT);
+		timeout--;
+	}
+
+	if((uint32_t)transferStatus != Cy_SMIF_GetTxfrStatus(KIT_QSPI_HW, &KIT_QSPI_context))
+	{
+		status = CY_SMIF_EXCEED_TIMEOUT;
+	}
+
+	return status;
 }
 
 
 /*******************************************************************************
-* Function Name: CheckStatus
+* Function Name: IsMemoryReady
 ****************************************************************************//**
 *
-* Check if status is SUCCES and call handle error function
+* Polls the memory device to check whether it is ready to accept new commands or
+* not until either it is ready or the retries have exceeded the limit.
+*
+* \param memConfig
+* memory device configuration
+*
+* \return Status of the operation.
+* CY_SMIF_SUCCESS 	     - Memory is ready to accept new commands.
+* CY_SMIF_EXCEED_TIMEOUT - Memory is busy.
 *
 *******************************************************************************/
-void CheckStatus(char * msg, uint32_t status)
+cy_en_smif_status_t IsMemoryReady(cy_stc_smif_mem_config_t const *memConfig)
 {
-    if(0u != status)
-    {
-        printf("%s", msg);
-        handle_error();
-    }
+	uint32_t retries = 0;
+	bool isBusy;
+
+	do
+	{
+		isBusy = Cy_SMIF_Memslot_IsBusy(KIT_QSPI_HW, (cy_stc_smif_mem_config_t* )memConfig, &KIT_QSPI_context);
+		Cy_SysLib_Delay(CY_SMIF_WAIT_1_UNIT);
+		retries++;
+	}while(isBusy && (retries < MEMORY_BUSY_CHECK_RETRIES));
+
+	return (isBusy ? CY_SMIF_EXCEED_TIMEOUT : CY_SMIF_SUCCESS);
 }
+
+
+/*******************************************************************************
+* Function Name: IsQuadEnabled
+****************************************************************************//**
+*
+* Checks whether QE (Quad Enable) bit is set or not in the configuration
+* register of the memory.
+*
+* \param memConfig
+* Memory device configuration
+*
+* \param isQuadEnabled
+* This parameter is updated to indicate whether Quad mode is enabled (true) or
+* not (false). The value is valid only when the function returns
+* CY_SMIF_SUCCESS.
+*
+* \return Status of the operation. See cy_en_smif_status_t.
+*
+*******************************************************************************/
+cy_en_smif_status_t IsQuadEnabled(cy_stc_smif_mem_config_t const *memConfig, bool *isQuadEnabled)
+{
+	cy_en_smif_status_t status;
+	uint8_t readStatus = 0;
+	uint32_t statusCmd = memConfig->deviceCfg->readStsRegQeCmd->command;
+	uint8_t maskQE = (uint8_t) memConfig->deviceCfg->stsRegQuadEnableMask;
+
+	status = Cy_SMIF_Memslot_CmdReadSts(KIT_QSPI_HW, memConfig, &readStatus, statusCmd, &KIT_QSPI_context);
+
+	*isQuadEnabled = false;
+	if(CY_SMIF_SUCCESS == status)
+	{
+		/* Check whether Quad mode is already enabled or not */
+		*isQuadEnabled = (maskQE == (readStatus & maskQE));
+	}
+
+	return status;
+}
+
+
+/*******************************************************************************
+* Function Name: EnableQuadMode
+****************************************************************************//**
+*
+* This function sets the QE (QUAD Enable) bit in the external memory
+* configuration register to enable Quad SPI mode.
+*
+* \param memConfig
+* Memory device configuration
+*
+* \return Status of the operation. See cy_en_smif_status_t.
+*
+*******************************************************************************/
+cy_en_smif_status_t EnableQuadMode(cy_stc_smif_mem_config_t const *memConfig)
+{
+	cy_en_smif_status_t status;
+
+	/* Send Write Enable to external memory */
+	status = Cy_SMIF_Memslot_CmdWriteEnable(KIT_QSPI_HW, smifMemConfigs[0], &KIT_QSPI_context);
+
+	if(CY_SMIF_SUCCESS == status)
+	{
+		status = Cy_SMIF_Memslot_QuadEnable(KIT_QSPI_HW, (cy_stc_smif_mem_config_t* )memConfig, &KIT_QSPI_context);
+
+		if(CY_SMIF_SUCCESS == status)
+		{
+			/* Poll memory for the completion of operation */
+			status = IsMemoryReady(memConfig);
+		}
+	}
+
+	return status;
+}
+
 
 /*******************************************************************************
 * Function Name: ReadMemory
 ****************************************************************************//**
 *
-* This function reads data from the external memory in the quad mode.
-* The function sends the Quad I/O Read: 0xEB command to the external memory.
+* This function reads data from the external memory and blocks until the read
+* transfer is complete or timeout occurs.
 *
-* \param baseaddr
-* Holds the base address of the SMIF block registers.
-*
-* \param smifContext
-* The internal SMIF context data.
-*
-* \param rxBuffer
-* The buffer for read data.
-*
-* \param rxSize
-* The size of data to read.
+* \param memConfig
+* Memory device configuration
 *
 * \param address
 * The address to read data from.
 *
+* \param rxBuffer
+* The buffer for storing the read data.
+*
+* \param rxSize
+* The size of data to read.
+*
+* \return Status of the operation. See cy_en_smif_status_t.
+*
 *******************************************************************************/
-void ReadMemory(SMIF_Type *baseaddr,
-                            cy_stc_smif_context_t *smifContext,
-                            uint8_t rxBuffer[],
-                            uint32_t rxSize,
-                            uint8_t *address)
+cy_en_smif_status_t ReadMemory(cy_stc_smif_mem_config_t const *memConfig, uint8_t address[], uint8_t rxBuffer[], uint32_t rxSize)
 {
-    cy_en_smif_status_t status;
-    uint8_t rxBuffer_reg;
-    cy_stc_smif_mem_device_cfg_t *device = smifMemConfigs[0]->deviceCfg;
-    cy_stc_smif_mem_cmd_t *cmdreadStsRegQe = device->readStsRegQeCmd;
+    cy_en_smif_status_t status = Cy_SMIF_Memslot_CmdRead(KIT_QSPI_HW, memConfig, address, rxBuffer, rxSize, NULL, &KIT_QSPI_context);
 
-    /* Set QE */
-    status = Cy_SMIF_Memslot_QuadEnable(baseaddr, (cy_stc_smif_mem_config_t*)smifMemConfigs[0], &KIT_QSPI_context);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_QuadEnable failed\r\n", status);
-
-    while(Cy_SMIF_Memslot_IsBusy(KIT_QSPI_HW, (cy_stc_smif_mem_config_t*)smifMemConfigs[0], &KIT_QSPI_context))
+    if(CY_SMIF_SUCCESS == status)
 	{
-		/* Wait until the QE operation is completed */
+    	/* Wait until the SMIF block completes receiving data */
+    	status = PollTransferStatus(CY_SMIF_REC_CMPLT);
 	}
 
-    /* Read data from the external memory configuration register */
-    status = Cy_SMIF_Memslot_CmdReadSts(baseaddr, smifMemConfigs[0], &rxBuffer_reg, (uint8_t)cmdreadStsRegQe->command , smifContext);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdReadSts failed\r\n", status);
-
-    printf("Received Data: 0x%X\r\n", (unsigned int) rxBuffer_reg);
-    printf("\r\nQuad I/O Read (QIOR 0x%0X) \r\n", 0x38);
-
-    /* The 4 Page program command */
-    status = Cy_SMIF_Memslot_CmdRead(baseaddr, smifMemConfigs[0], address, rxBuffer, rxSize, NULL, &KIT_QSPI_context);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdRead failed\r\n",status);
-
-    while(Cy_SMIF_BusyCheck(baseaddr))
-    {
-        /* Wait until the SMIF IP operation is completed. */
-    }
-
-    /* Send received data to the console */
-    PrintArray("Received Data: ",rxBuffer, rxSize);
+    return status;
 }
+
+
 /*******************************************************************************
 * Function Name: WriteMemory
 ********************************************************************************
 *
-* This function writes data to the external memory in the quad mode.
-* The function sends the Quad Page Program: 0x38 command to the external memory.
+* This function writes data to the external memory.
 *
-* \param baseaddr
-* Holds the base address of the SMIF block registers.
-*
-* \param smifContext
-* The internal SMIF context data.
-*
-* \param txBuffer
-* Data to write in the external memory.
-*
-* \param txSize
-* The size of data.
+* \param memConfig
+* Memory device configuration
 *
 * \param address
-* The address to write data to.
+* The address to write data at.
+*
+* \param txBuffer
+* Buffer holding the data to write in the external memory.
+*
+* \param txSize
+* The size of data to write.
+*
+* \return Status of the operation. See cy_en_smif_status_t.
 *
 *******************************************************************************/
-void WriteMemory(SMIF_Type *baseaddr,
-                    cy_stc_smif_context_t *smifContext,
-                    uint8_t txBuffer[],
-                    uint32_t txSize,
-                    uint8_t *address)
+cy_en_smif_status_t WriteMemory(cy_stc_smif_mem_config_t const *memConfig, uint8_t address[], uint8_t txBuffer[], uint32_t txSize)
 {
-    cy_en_smif_status_t status;
-    uint8_t rxBuffer_reg;
-    cy_stc_smif_mem_device_cfg_t *device = smifMemConfigs[0]->deviceCfg;
-    cy_stc_smif_mem_cmd_t *cmdreadStsRegQe = device->readStsRegQeCmd;
-    cy_stc_smif_mem_cmd_t *cmdreadStsRegWip = device->readStsRegWipCmd;
+    cy_en_smif_status_t status = Cy_SMIF_Memslot_CmdWriteEnable(KIT_QSPI_HW, memConfig, &KIT_QSPI_context);
 
-    /* Set QE */
-    status = Cy_SMIF_Memslot_QuadEnable(baseaddr, (cy_stc_smif_mem_config_t*)smifMemConfigs[0], &KIT_QSPI_context);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_QuadEnable failed\r\n", status);
-
-    while(Cy_SMIF_Memslot_IsBusy(KIT_QSPI_HW, (cy_stc_smif_mem_config_t*)smifMemConfigs[0], &KIT_QSPI_context))
-	{
-		/* Wait until the QE operation is completed */
-	}
-
-    /* Read data from the external memory configuration register */
-    status = Cy_SMIF_Memslot_CmdReadSts(baseaddr, smifMemConfigs[0], &rxBuffer_reg, (uint8_t)cmdreadStsRegQe->command , smifContext);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdReadSts failed\r\n", status);
-
-    printf("Received Data: 0x%X\r\n", (unsigned int) rxBuffer_reg);
-
-    /* Send Write Enable to external memory */
-    status = Cy_SMIF_Memslot_CmdWriteEnable(baseaddr, smifMemConfigs[0], &KIT_QSPI_context);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdWriteEnable failed\r\n", status);
-
-    printf("\r\nQuad Page Program (QPP 0x%0X) \r\n", 0x38);
-
-    /* Quad Page Program command */
-    status = Cy_SMIF_Memslot_CmdProgram(KIT_QSPI_HW, smifMemConfigs[0], address, txBuffer, txSize, NULL, &KIT_QSPI_context);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdProgram failed\r\n", status);
-
-    PrintArray("Written Data: ", txBuffer, txSize);
-
-    while(Cy_SMIF_Memslot_IsBusy(KIT_QSPI_HW, (cy_stc_smif_mem_config_t*)smifMemConfigs[0], &KIT_QSPI_context))
+    if(CY_SMIF_SUCCESS == status)
     {
-        /* Wait until the Erase operation is completed */
+		status = Cy_SMIF_Memslot_CmdProgram(KIT_QSPI_HW, memConfig, address, txBuffer, txSize, NULL, &KIT_QSPI_context);
+
+		if(CY_SMIF_SUCCESS == status)
+		{
+			/* Wait until the SMIF block completes transmitting data */
+			status = PollTransferStatus(CY_SMIF_SEND_CMPLT);
+
+			if(CY_SMIF_SUCCESS == status)
+			{
+				/* Wait until the write operation is completed or timeout occurs */
+				status = IsMemoryReady(memConfig);
+			}
+		}
     }
 
-    /* Read data from the external memory status register */
-    status = Cy_SMIF_Memslot_CmdReadSts(baseaddr, smifMemConfigs[0], &rxBuffer_reg,
-                             (uint8_t)cmdreadStsRegWip->command , smifContext);
-    CheckStatus("\r\n\r\nSMIF ReadStatusReg failed\r\n", status);
-
-    printf("Received Data: 0x%X\r\n", (unsigned int) rxBuffer_reg);
+	return status;
 }
+
 
 /*******************************************************************************
 * Function Name: EraseMemory
 ********************************************************************************
 *
-* Erase block of external memory
+* Erases a block/sector of external memory
 *
-* \param baseaddr
-* Holds the base address of the SMIF block registers.
-*
-* \param memConfig configuration of external memory
+* \param memConfig
+* Memory device configuration
 *
 * \param address
-* The address to write data to.
+* The address of the block to be erased.
 *
-* \param smifContext
-* The internal SMIF context data.
+* \return Status of the operation. See cy_en_smif_status_t.
 *
 *******************************************************************************/
-void EraseMemory(SMIF_Type *baseaddr, cy_stc_smif_mem_config_t *memConfig,
-                 uint8_t *address,
-                 cy_stc_smif_context_t const *smifContext)
+cy_en_smif_status_t EraseMemory(cy_stc_smif_mem_config_t const *memConfig, uint8_t address[])
 {
-    cy_en_smif_status_t status;
-    status = Cy_SMIF_Memslot_CmdWriteEnable(baseaddr, memConfig, smifContext);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdWriteEnable failed\r\n", status);
+    cy_en_smif_status_t status = Cy_SMIF_Memslot_CmdWriteEnable(KIT_QSPI_HW, memConfig, &KIT_QSPI_context);
 
-    status = Cy_SMIF_Memslot_CmdSectorErase(baseaddr, memConfig, address, smifContext);
-    CheckStatus("\r\n\r\nSMIF Cy_SMIF_Memslot_CmdSectorErase failed\r\n", status);
-
-    /* Wait until the memory is erased */
-    while(Cy_SMIF_Memslot_IsBusy(baseaddr, memConfig, smifContext))
+    if(CY_SMIF_SUCCESS == status)
     {
-        /* Wait until the Erase operation is completed */
+		status = Cy_SMIF_Memslot_CmdSectorErase(KIT_QSPI_HW, (cy_stc_smif_mem_config_t* )memConfig, address, &KIT_QSPI_context);
+
+		if(CY_SMIF_SUCCESS == status)
+		{
+			/* Wait until the erase operation is completed or timeout occurs. */
+			status = IsMemoryReady(memConfig);
+		}
     }
+
+    return status;
 }
+
+

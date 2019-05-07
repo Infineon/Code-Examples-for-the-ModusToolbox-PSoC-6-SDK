@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Design version="10" xmlns="http://cypress.com/xsd/cydesignfile_v1">
     <ToolInfo version="1.0.0"/>
-    <Device mpn="CY8C6247BZI-D54"/>
+    <Device mpn="CY8C624ABZI-D44"/>
     <Libraries>
         <Library name="psoc6sw" version="1.1"/>
     </Libraries>
@@ -77,6 +77,16 @@
             </Block>
         </Peripherals>
         <Pins>
+            <Block location="ioss[0].port[0].pin[4]" alias="KIT_BTN1" template="mxs40pin" version="1.0">
+                <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
+                <Param id="initialState" value="1"/>
+                <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+                <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+                <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+                <Param id="driveStrength" value="CY_GPIO_DRIVE_FULL"/>
+                <Param id="sioOutputBuffer" value="true"/>
+                <Param id="inFlash" value="true"/>
+            </Block>
             <Block location="ioss[0].port[11].pin[2]" alias="" template="mxs40pin" version="1.0">
                 <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                 <Param id="initialState" value="1"/>
@@ -137,7 +147,7 @@
                 <Param id="sioOutputBuffer" value="true"/>
                 <Param id="inFlash" value="true"/>
             </Block>
-            <Block location="ioss[0].port[13].pin[7]" alias="KIT_LED2" template="mxs40pin" version="1.0">
+            <Block location="ioss[0].port[13].pin[7]" alias="KIT_LED1" template="mxs40pin" version="1.0">
                 <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                 <Param id="initialState" value="1"/>
                 <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
@@ -278,6 +288,14 @@
             <Port name="ioss[0].port[6].pin[4].digital_out[0]"/>
         </Net>
         <Net>
+            <Port name="ioss[0].port[5].pin[0].digital_inout[0]"/>
+            <Port name="scb[5].uart_rx[0]"/>
+        </Net>
+        <Net>
+            <Port name="ioss[0].port[5].pin[1].digital_inout[0]"/>
+            <Port name="scb[5].uart_tx[0]"/>
+        </Net>
+        <Net>
             <Port name="ioss[0].port[11].pin[2].digital_out[0]"/>
             <Port name="smif[0].spi_select0[0]"/>
         </Net>
@@ -300,14 +318,6 @@
         <Net>
             <Port name="ioss[0].port[11].pin[7].digital_inout[0]"/>
             <Port name="smif[0].spi_clk[0]"/>
-        </Net>
-        <Net>
-            <Port name="ioss[0].port[5].pin[0].digital_inout[0]"/>
-            <Port name="scb[5].uart_rx[0]"/>
-        </Net>
-        <Net>
-            <Port name="ioss[0].port[5].pin[1].digital_inout[0]"/>
-            <Port name="scb[5].uart_tx[0]"/>
         </Net>
         <Net>
             <Port name="peri[0].div_16[0].clk[0]"/>

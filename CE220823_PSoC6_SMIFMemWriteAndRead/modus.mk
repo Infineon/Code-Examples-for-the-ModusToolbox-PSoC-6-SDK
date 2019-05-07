@@ -51,7 +51,7 @@ CY_EXAMPLE_NAME = CE220823_SMIFMemWriteAndRead
 #
 # Description of the example project to display
 #
-CY_EXAMPLE_DESCRIPTION = Demonstrates read/write operation to external memory by using Serial memory interface(SMIF) in Quad Serial peripheral interface (QSPI) mode. This example also checks the integrity of the read data against written data.
+CY_EXAMPLE_DESCRIPTION = Demonstrates interfacing with an external NOR flash memory using the Serial Memory Interface (SMIF) block in Quad Serial Peripheral Interface (QSPI) mode. This example also checks the integrity of the read data against written data.
 
 #
 # New project dialog inclusion

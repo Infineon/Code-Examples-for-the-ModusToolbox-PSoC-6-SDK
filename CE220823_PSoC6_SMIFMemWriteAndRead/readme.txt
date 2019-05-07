@@ -4,7 +4,7 @@ CE220823_SMIFMemWriteAndRead
 
 Requirements
 ------------
-Tool: ModusToolbox™ IDE
+Tool: ModusToolbox™ IDE 1.1
 Programming Language: C
 Associated Parts: All PSoC 6 MCU parts
 
@@ -12,12 +12,12 @@ Supported Kits
 --------------
 PSoC 6 BLE Pioneer Kit
 PSoC 6 WiFi-BT Pioneer Kit
-PSoC 6 WiFi-BT Prototyping Kit
+PSoC 6 Wi-Fi BT Prototyping Kit
 
 Overview
 --------
-Demonstrates read/write operation to external memory by using Serial memory
-interface(SMIF) in Quad Serial peripheral interface (QSPI) mode. 
+Demonstrates interfacing with an external NOR flash memory using the Serial
+Memory Interface (SMIF) block in Quad Serial Peripheral Interface (QSPI) mode. 
 This example also checks the integrity of the read data against written data.
 
 Build and Program

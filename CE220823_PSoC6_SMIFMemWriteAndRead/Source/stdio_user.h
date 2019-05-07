@@ -175,7 +175,7 @@
 
 /* Controls whether CR is added for LF */
 #ifndef STDOUT_CR_LF
-#define STDOUT_CR_LF    0
+#define STDOUT_CR_LF    1
 #endif /* STDOUT_CR_LF */
 
 #if defined(__cplusplus)
