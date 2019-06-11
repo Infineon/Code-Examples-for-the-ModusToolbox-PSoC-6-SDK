@@ -82,7 +82,7 @@ CY_APP_CM0P_SOURCE =
 #
 CY_APP_CM4_SOURCE = \
 	Source/main.c\
-	Source/readme.txt
+	readme.txt
 
 #
 # Paths to use for ModusToolbox IDE 
