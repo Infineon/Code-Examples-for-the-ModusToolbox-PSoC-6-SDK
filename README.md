@@ -46,8 +46,12 @@ In the **Starter Application** window, click the **Import** button and navigate 
 |CE220465_CryptoAESDemo| Encrypts and decrypts user input data using the AES algorithm, using a 128-bit long key. The encrypted and decrypted data are displayed on a UART terminal emulator.|
 |CE220511_PSoC6_CryptoSHADemo|Generate a unique hash value for an arbitrary message using Secure Hash Algorithm (SHA).|
 |CE221295_PSoC6_CryptoTRNG|Create a One-Time Password (OTP) using the True Random Number generation feature of PSoC 6 MCU cryptography block.|
+|CE227032_PSoC6_MCU_<br />SMIF_OnTheFly_Encryption_MMIO_XIP|This code example demonstrates on-the-fly encryption of data using Serial Memory Interface(SMIF) in MMIO and XIP modes.|
 |CE219656_PSoC6_UARTLowLevelAPIs| Three applications demonstrate the UART transmit and receive operation using low-level polling, DMA, or an interrupt.|
 |CE220541_PSoC6_MCU_SCB_EZI2C|Implements an EZI2C Slave using the Serial Communication Block (SCB) resource.|
 |CE220818_PSoC6_I2CMaster| Demonstrates the basic operation of the I2C master resource, which sends a command packet to the I2C slave SCB to control an user LED. Three applications developed in this example are: I2C master using high-level APIs, I2C master using low-level APIs and I2C master communication with EzI2C slave.|
 |CE221119_PSoC6_MCU_SCB_I2C_Slave| Two applications demonstrate the I2C slave mode, using either polling or a callback routine.|
 |CE221120_PSoC6_SPIMaster| Four applications demonstrate SPI communication between master and slave, using high-level API, low-level API, polling, and an interrupt.|
+|CE223468<br />Interfacing_BMI160(I2C)FreeRTOS| This code example demonstrates how to interface PSoC® 6 MCU with a BMI160 motion aensor over an I2C interface within a FreeRTOS task. |
+| CE225909_PSoC6_BatteryLevel_RTOS          | This code example implements a GATT server with BLE standard Battery Service and Device Information Service. Battery level is simulated in the firmware and its value changes continuously from 0 to 100 percent. |
+|                                                            |                                                              |
