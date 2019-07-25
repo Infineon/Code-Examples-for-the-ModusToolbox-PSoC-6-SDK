@@ -28,6 +28,7 @@ In the **Starter Application** window, click the **Import** button and navigate 
 
 | Code Example | Description |
 | ----- | ----- |
+|CE195313_Emulated_EEPROM | Demonstrates the basic operation of the emulated EEPROM middleware |
 |CE221773_PSoC6_HelloWorld | Demonstrates UART communication and blinks an LED using a TCPWM resource|
 |CE212736_PSoC6_BLE_FindMe| Introduces BLE software development and implements the BLE Find me profile|
 |CE218136_EINK_CapSense_RTOS | Shows how to create a user-interface solution using an E-INK display, CapSense®, and FreeRTOS |
