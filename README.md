@@ -55,5 +55,6 @@ In the **Starter Application** window, click the **Import** button and navigate 
 |CE221120_PSoC6_SPIMaster| Four applications demonstrate SPI communication between master and slave, using high-level API, low-level API, polling, and an interrupt.|
 |CE223468<br />Interfacing_BMI160(I2C)FreeRTOS| This code example demonstrates how to interface PSoC® 6 MCU with a BMI160 motion aensor over an I2C interface within a FreeRTOS task. |
 | CE225909_PSoC6_BatteryLevel_RTOS          | This code example implements a GATT server with BLE standard Battery Service and Device Information Service. Battery level is simulated in the firmware and its value changes continuously from 0 to 100 percent. |
+| CE224285_PSoC_6MCU_ExternalFlashAccess_in_XIP_Mode_with_QSPI | This example demonstrates how to use QSPI in execute-in-place (XIP) mode with external flash memory on the PSoC® 6 MCU |
 | CE222460_SPI_FRAM_ACCESS_WITH_PSOC6_SMIF | This code example demonstrates implementing the SPI host controller using PSoC 6 SMIF to access the SPI F-RAM. |
 | CE222967_QSPI_FRAM_ACCESS_WITH_PSOC6_SMIF | This code example implements the QSPI F-RAM host controller using PSoC 6 Serial Memory Interface (SMIF) block and demonstrates accessing the Excelon Ultra QSPI F-RAM in SPI, DPI, and QPI modes. |
