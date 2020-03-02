@@ -62,3 +62,4 @@ In the **Starter Application** window, click the **Import** button and navigate 
 | CE224285_PSoC_6MCU_ExternalFlashAccess_in_XIP_Mode_with_QSPI | This example demonstrates how to use QSPI in execute-in-place (XIP) mode with external flash memory on the PSoC® 6 MCU |
 | CE222460_SPI_FRAM_ACCESS_WITH_PSOC6_SMIF | This code example demonstrates implementing the SPI host controller using PSoC 6 SMIF to access the SPI F-RAM. |
 | CE222967_QSPI_FRAM_ACCESS_WITH_PSOC6_SMIF | This code example implements the QSPI F-RAM host controller using PSoC 6 Serial Memory Interface (SMIF) block and demonstrates accessing the Excelon Ultra QSPI F-RAM in SPI, DPI, and QPI modes. |
+=======
